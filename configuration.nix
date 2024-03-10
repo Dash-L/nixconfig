@@ -56,6 +56,7 @@
     isNormalUser = true;
     description = "Dashiell Elliott";
     extraGroups = [ "networkmanager" "wheel" "video" ];
+    shell = pkgs.bash;
     packages = with pkgs; [];
   };
 
@@ -80,6 +81,17 @@
   };
 
   # List services that you want to enable:
+
+  # Configure Intel Precise Touch
+  services.iptsd = {
+    enable = true; # not technically necessary, enabled by surface hardware config
+    config = {
+      Touch = {
+        DisableOnStylus = true;
+        DisableOnPalm = true;
+      };
+    };
+  };
 
   # for connecting to WPI wifi while off campus
   services.globalprotect.enable = true;
