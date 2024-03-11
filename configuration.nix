@@ -83,12 +83,13 @@
   # List services that you want to enable:
 
   # Configure Intel Precise Touch
-  services.iptsd = {
+  microsoft-surface.ipts = {
     enable = true; # not technically necessary, enabled by surface hardware config
     config = {
       Touch = {
-        DisableOnStylus = true;
+        # Disable = true;
         DisableOnPalm = true;
+        DisableOnStylus = true;
       };
     };
   };
