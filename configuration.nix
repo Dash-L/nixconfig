@@ -55,7 +55,7 @@
   users.users.dash = {
     isNormalUser = true;
     description = "Dashiell Elliott";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "dialout" ];
     shell = pkgs.bash;
     packages = with pkgs; [];
   };
@@ -82,6 +82,9 @@
 
   # List services that you want to enable:
 
+  # platformio uploading
+  services.udev.packages = with pkgs; [ platformio-core.udev ];
+
   # Configure Intel Precise Touch
   microsoft-surface.ipts = {
     enable = true; # not technically necessary, enabled by surface hardware config
@@ -99,6 +102,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  services.thermald.enable = true;
+  services.auto-cpufreq.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
