@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   wayland.windowManager.sway = {
@@ -6,6 +6,13 @@
     config = rec {
       modifier = "Mod4";
       terminal = "alacritty";
+      defaultWorkspace = "workspace number 1";
+      keybindings = let 
+                      mod = config.wayland.windowManager.sway.config.modifier;
+      in lib.mkOptionDefault {
+        "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
+        "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" /tmp/$(date +'screenshot-%H:%M:%S.png')";
+      };
       input = {
         "1118:2479:Microsoft_Surface_045E:09AF_Touchpad" = {
           click_method = "clickfinger";

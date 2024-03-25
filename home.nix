@@ -31,7 +31,12 @@
   home.packages = with pkgs; [
     zip unzip # basic shell utils
     light # brightness control
+    fuzzel # program launcher
+    grim slurp # screenshots
+    mako # notifications
     wl-clipboard
+    zellij # terminal multiplexer
+    zathura # pdf viewer
     # fonts
     noto-fonts
     noto-fonts-cjk
