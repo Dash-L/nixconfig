@@ -37,6 +37,7 @@
     wl-clipboard
     zellij # terminal multiplexer
     zathura # pdf viewer
+    pavucontrol # audio control
     # fonts
     noto-fonts
     noto-fonts-cjk
@@ -65,6 +66,9 @@
   ];
 
   fonts.fontconfig.enable = true;
+
+  # Bluetooth headset button support
+  services.mpris-proxy.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
