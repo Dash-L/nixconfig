@@ -36,7 +36,8 @@
     mako # notifications
     wl-clipboard
     zellij # terminal multiplexer
-    zathura # pdf viewer
+    zathura # simple pdf viewer
+    okular # fancier pdf viewer
     pavucontrol # audio control
     # fonts
     noto-fonts
