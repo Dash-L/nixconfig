@@ -40,6 +40,7 @@
     okular # fancier pdf viewer
     pavucontrol # audio control
     # fonts
+    google-fonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -48,6 +49,8 @@
     source-han-sans-japanese
     source-han-serif-japanese
     iosevka
+
+    droidcam
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -70,6 +73,7 @@
 
   # Bluetooth headset button support
   services.mpris-proxy.enable = true;
+  services.playerctld.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
