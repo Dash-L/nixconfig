@@ -41,6 +41,29 @@
         #   events = "disabled";
         # };
       };
+      output = {
+        eDP-1 = {
+          pos = "1920 0";
+        };
+        DP-6 = {
+          pos = "-1600 0";
+        };
+        DP-7 = {
+          pos = "0 0";
+        };
+      };
+      workspaceOutputAssign = [
+        { output = "DP-7"; workspace = "1"; }
+        { output = "DP-7"; workspace = "2"; }
+        { output = "DP-7"; workspace = "3"; }
+        { output = "DP-7"; workspace = "4"; }
+        { output = "eDP-1"; workspace = "5"; }
+        { output = "eDP-1"; workspace = "6"; }
+        { output = "eDP-1"; workspace = "7"; }
+        { output = "DP-6"; workspace = "8"; }
+        { output = "DP-6"; workspace = "9"; }
+        { output = "DP-6"; workspace = "10"; }
+      ];
     };
   };
 }
