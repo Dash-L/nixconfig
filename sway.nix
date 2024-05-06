@@ -1,7 +1,13 @@
 { config, pkgs, lib, ... }:
 
 {
-  wayland.windowManager.sway = {
+  wayland.windowManager.sway =
+  let
+    left = "DP-4";
+    middle = "DP-5";
+    right = "eDP-1";
+  in
+    {
     enable = true;
     config = rec {
       modifier = "Mod4";
@@ -34,6 +40,10 @@
           tap_button_map = "lrm";
           scroll_factor = "0.5";
         };
+        "type:keyboard" = {
+          repeat_delay = "200";
+          repeat_rate = "50";
+        };
         # "1118:3127:Intel_Touch_Host_Controller_Touchscreen" = {
         #   events = "disabled";
         # };
@@ -42,27 +52,27 @@
         # };
       };
       output = {
-        eDP-1 = {
+        "${right}" = {
           pos = "1920 0";
         };
-        DP-6 = {
+        "${left}" = {
           pos = "-1600 0";
         };
-        DP-7 = {
+        "${middle}" = {
           pos = "0 0";
         };
       };
       workspaceOutputAssign = [
-        { output = "DP-7"; workspace = "1"; }
-        { output = "DP-7"; workspace = "2"; }
-        { output = "DP-7"; workspace = "3"; }
-        { output = "DP-7"; workspace = "4"; }
-        { output = "eDP-1"; workspace = "5"; }
-        { output = "eDP-1"; workspace = "6"; }
-        { output = "eDP-1"; workspace = "7"; }
-        { output = "DP-6"; workspace = "8"; }
-        { output = "DP-6"; workspace = "9"; }
-        { output = "DP-6"; workspace = "10"; }
+        { output = left; workspace = "1"; }
+        { output = left; workspace = "2"; }
+        { output = left; workspace = "3"; }
+        { output = middle; workspace = "4"; }
+        { output = middle; workspace = "5"; }
+        { output = middle; workspace = "6"; }
+        { output = middle; workspace = "7"; }
+        { output = right; workspace = "8"; }
+        { output = right; workspace = "9"; }
+        { output = right; workspace = "10"; }
       ];
     };
   };
