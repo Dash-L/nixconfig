@@ -124,6 +124,13 @@
     };
   };
 
+  # steam configs
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
+
   # for connecting to WPI wifi while off campus
   services.globalprotect.enable = true;
 
