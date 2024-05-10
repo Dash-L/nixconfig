@@ -20,6 +20,9 @@
   boot.kernelModules = [ "v4l2loopback" ];
   programs.adb.enable = true;
 
+  # flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   networking.hostName = "dash-laptop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
