@@ -44,6 +44,10 @@
           repeat_delay = "200";
           repeat_rate = "50";
         };
+        "type:pointer" = {
+          accel_profile = "flat";
+          pointer_accel = "-0.5";
+        };
         # "1118:3127:Intel_Touch_Host_Controller_Touchscreen" = {
         #   events = "disabled";
         # };

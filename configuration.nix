@@ -141,7 +141,19 @@
   services.openssh.enable = true;
 
   services.thermald.enable = true;
+  services.thermald.configFile = /home/dash/.config/home-manager/thermal-conf.xml;
+  # services.throttled.enable = true;
   services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+       governor = "powersave";
+       turbo = "never";
+    };
+    charger = {
+       governor = "performance";
+       turbo = "auto";
+    };
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
