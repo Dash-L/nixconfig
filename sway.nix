@@ -48,6 +48,12 @@
           accel_profile = "flat";
           pointer_accel = "-0.5";
         };
+        "1118:3127:IPTS_Stylus" = {
+          map_to_output = "${right}";
+        };
+        "1118:3127:IPTS_Touch" = {
+          map_to_output = "${right}";
+        };
         # "1118:3127:Intel_Touch_Host_Controller_Touchscreen" = {
         #   events = "disabled";
         # };
