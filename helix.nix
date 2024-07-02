@@ -6,6 +6,13 @@
     defaultEditor = true;
     settings = {
       theme = "catppuccin_macchiato";
+      keys = {
+        normal = {
+          space = {
+            i = ":toggle lsp.display-inlay-hints";
+          };
+        };
+      };
       editor = {
         line-number = "relative";
         mouse = true;
@@ -32,6 +39,26 @@
         whitespace.render = "all";
         indent-guides.render = true;
       };
+    };
+    languages = {
+      language = [
+        {
+          name = "typescript";
+          auto-format = false;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "typescript"];
+          };
+        }
+        {
+          name = "tsx";
+          auto-format = false;
+          formatter = {
+            command = "prettier";
+            args = ["--parser" "typescript"];
+          };
+        }
+      ];
     };
   };
 }
