@@ -30,6 +30,16 @@
         "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
         "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
       };
+      window = {
+        commands = [
+          {
+            command = "floating enable";
+            criteria = {
+              title = "Wayfarer";
+            };
+          }
+        ];
+      };
       input = {
         "1118:2479:Microsoft_Surface_045E:09AF_Touchpad" = {
           click_method = "clickfinger";

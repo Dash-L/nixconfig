@@ -33,6 +33,8 @@
     light # brightness control
     fuzzel # program launcher
     grim slurp # screenshots
+    wayfarer # screen recording
+    vlc # video playback
     mako # notifications
     wl-clipboard
     zellij # terminal multiplexer
@@ -50,9 +52,9 @@
     source-han-serif-japanese
     iosevka
 
-    droidcam
-
     gamescope
+
+    zoom-us
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
