@@ -4,12 +4,24 @@
 
 { config, pkgs, ... }:
 
+let
+  bluez576 = pkgs.bluez.overrideAttrs (prev: {
+    version = "5.76";
+    src = pkgs.fetchurl {
+      url = "mirror://kernel/linux/bluetooth/bluez-5.76.tar.xz";
+      hash = "sha256-VeLGRZCa2C2DPELOhewgQ04O8AcJQbHqtz+s3SQLvWM=";
+    };
+  });
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       <nixos-hardware/microsoft/surface/surface-pro-intel>
       ./hardware-configuration.nix
     ];
+
+  # TEMP??? Maps example.com to localhost
+  networking.extraHosts = "127.0.0.1 example.com";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -33,10 +45,14 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.package = bluez576;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+
+  # docker
+  virtualisation.docker.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -66,7 +82,7 @@
   users.users.dash = {
     isNormalUser = true;
     description = "Dashiell Elliott";
-    extraGroups = [ "networkmanager" "wheel" "video" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "dialout" "docker" ];
     shell = pkgs.bash;
     packages = with pkgs; [];
   };
@@ -90,16 +106,14 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    wireplumber.configPackages = [
-    	(pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-    		bluez_monitor.properties = {
-    			["bluez5.enable-sbc-xq"] = true,
-    			["bluez5.enable-msbc"] = true,
-    			["bluez5.enable-hw-volume"] = true,
-    			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-    		}
-    	'')
-    ];
+    wireplumber.extraConfig = {
+  		"monitor.bluez.properties" = {
+  			"bluez5.enable-sbc-xq" = true;
+  			"bluez5.enable-msbc" = true;
+  			"bluez5.enable-hw-volume" = true;
+  			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+  		};
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -110,22 +124,30 @@
     enableSSHSupport = true;
   };
 
+  # for screensharing
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    wlr.enable = true;
+    config.common.default = "wlr";
+  };
+
   # List services that you want to enable:
 
   # platformio uploading
   services.udev.packages = with pkgs; [ platformio-core.udev ];
 
   # Configure Intel Precise Touch
-  microsoft-surface.ipts = {
-    enable = true; # not technically necessary, enabled by surface hardware config
-    config = {
-      Touch = {
-        # Disable = true;
-        DisableOnPalm = true;
-        DisableOnStylus = true;
-      };
-    };
-  };
+  # microsoft-surface.ipts = {
+  #   enable = true; # not technically necessary, enabled by surface hardware config
+  #   config = {
+  #     Touch = {
+  #       # Disable = true;
+  #       DisableOnPalm = true;
+  #       DisableOnStylus = true;
+  #     };
+  #   };
+  # };
 
   # steam configs
   programs.steam = {
