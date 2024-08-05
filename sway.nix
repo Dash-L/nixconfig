@@ -17,7 +17,7 @@
                       mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {
         "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
-        "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" /tmp/$(date +'screenshot-%H:%M:%S.png')";
+        "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/$(date +'screenshot-%H:%M:%S.png') | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         # Audio controls
         "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%+";
         "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%-";
@@ -29,6 +29,16 @@
         # Brightness controls
         "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
         "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+      };
+      startup = [
+        {
+          command = "${pkgs.swww}/bin/swww-daemon";
+          always = false;
+        }
+      ];
+      gaps = {
+        outer = 5;
+        inner = 2;
       };
       window = {
         commands = [

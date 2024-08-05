@@ -8,16 +8,17 @@
       theme = "catppuccin_macchiato";
       keys = {
         normal = {
-          space = {
+          ret = ["open_below" "normal_mode"];
+          "C-ret" = ["open_above" "normal_mode"];
+          q = {
             i = ":toggle lsp.display-inlay-hints";
+            w = ":toggle whitespace.render all none";
           };
         };
       };
       editor = {
         line-number = "relative";
         mouse = true;
-        cursorline = true;
-        cursorcolumn = true;
         completion-replace = true;
         bufferline = "always";
         color-modes = true;
@@ -36,7 +37,6 @@
           display-messages = true;
           display-inlay-hints = true;
         };
-        whitespace.render = "all";
         indent-guides.render = true;
       };
     };

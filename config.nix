@@ -4,25 +4,7 @@
 
 { config, pkgs, ... }:
 
-let
-  bluez576 = pkgs.bluez.overrideAttrs (prev: {
-    version = "5.76";
-    src = pkgs.fetchurl {
-      url = "mirror://kernel/linux/bluetooth/bluez-5.76.tar.xz";
-      hash = "sha256-VeLGRZCa2C2DPELOhewgQ04O8AcJQbHqtz+s3SQLvWM=";
-    };
-  });
-in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      <nixos-hardware/microsoft/surface/surface-pro-intel>
-      ./hardware-configuration.nix
-    ];
-
-  # TEMP??? Maps example.com to localhost
-  networking.extraHosts = "127.0.0.1 example.com";
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -46,9 +28,9 @@ in
   networking.networkmanager.enable = true;
 
   hardware.graphics.enable = true;
+  hardware.opengl.enable = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.package = bluez576;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   # docker
@@ -87,6 +69,11 @@ in
     packages = with pkgs; [];
   };
 
+  # Attempt to improve latency, see: https://nixos.wiki/wiki/Sway
+  # security.pam.loginLimits = [
+  #   { domain = "@users"; item = "rtprio"; type = "-"; value = 1; }
+  # ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -107,12 +94,14 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.extraConfig = {
-  		"monitor.bluez.properties" = {
-  			"bluez5.enable-sbc-xq" = true;
-  			"bluez5.enable-msbc" = true;
-  			"bluez5.enable-hw-volume" = true;
-  			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-  		};
+      "bluez" = {
+    		"monitor.bluez.properties" = {
+    			"bluez5.enable-sbc-xq" = true;
+    			"bluez5.enable-msbc" = true;
+    			"bluez5.enable-hw-volume" = true;
+    			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+    		};
+      };
     };
   };
 
@@ -152,6 +141,10 @@ in
   # steam configs
   programs.steam = {
     enable = true;
+    # package = pkgs.steam.override {
+    #   # For tModLoader mod development
+    #   extraPkgs = pkgs: [ pkgs.dotnet-sdk_8 ];
+    # };
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
@@ -164,16 +157,37 @@ in
 
   services.thermald.enable = true;
   services.thermald.configFile = /home/dash/.config/home-manager/thermal-conf.xml;
+  # services.tlp = {
+  #   enable = true;
+  #     CPU_SCALING_GOVERNOR_ON_AC = "performance";
+  #     CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+  #     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+  #     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+
+  #     CPU_MIN_PERF_ON_AC = 0;
+  #     CPU_MAX_PERF_ON_AC = 100;
+  #     CPU_MIN_PERF_ON_BAT = 0;
+  #     CPU_MAX_PERF_ON_BAT = 20;
+
+  #    #Optional helps save long term battery health
+  #    START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
+  #    STOP_CHARGE_THRESH_BAT0 = 70; # 80 and above it stops charging
+  #   };
+  # };
   # services.throttled.enable = true;
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-       governor = "powersave";
-       turbo = "never";
-    };
-    charger = {
-       governor = "performance";
-       turbo = "auto";
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+         governor = "powersave";
+         turbo = "never";
+      };
+      charger = {
+         governor = "powersave";
+         energy_performance_preference = "balance_performance";
+         turbo = "auto";
+      };
     };
   };
 
@@ -182,13 +196,4 @@ in
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
-
 }

@@ -9,6 +9,7 @@
     ./git.nix
     ./pass.nix
     ./rnote.nix
+    ./mako.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -41,6 +42,7 @@
     zathura # simple pdf viewer
     okular # fancier pdf viewer
     pavucontrol # audio control
+    swww # wallpapers
     # fonts
     google-fonts
     noto-fonts
@@ -55,6 +57,10 @@
     gamescope
 
     zoom-us
+
+    armcord
+
+    dotnet-sdk_8
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
