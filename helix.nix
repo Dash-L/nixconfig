@@ -13,6 +13,7 @@
           q = {
             i = ":toggle lsp.display-inlay-hints";
             w = ":toggle whitespace.render all none";
+            f = ":format";
           };
         };
       };
@@ -31,6 +32,7 @@
           select = "underline";
         };
         file-picker = {
+          git-ignore = false;
           hidden = false;
         };
         lsp = {

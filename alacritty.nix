@@ -8,7 +8,7 @@
         normal = {
           family = "iosevka";
         };
-        size = 15;
+        size = 10;
       };
       window = {
         opacity = 0.8;

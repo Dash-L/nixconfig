@@ -140,11 +140,7 @@
 
   # steam configs
   programs.steam = {
-    enable = true;
-    # package = pkgs.steam.override {
-    #   # For tModLoader mod development
-    #   extraPkgs = pkgs: [ pkgs.dotnet-sdk_8 ];
-    # };
+    enable = false;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };

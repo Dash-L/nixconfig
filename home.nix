@@ -79,6 +79,11 @@
     # '')
   ];
 
+  home.pointerCursor = {
+    name = "catppuccin-mocha-mauve-cursors";
+    package = pkgs.catppuccin-cursors.mochaMauve;
+  };
+
   fonts.fontconfig.enable = true;
 
   # Bluetooth headset button support
