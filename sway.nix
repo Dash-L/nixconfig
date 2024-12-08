@@ -29,6 +29,8 @@
         # Brightness controls
         "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
         "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+        # Screen mirroring
+        "${mod}+m" = "exec ${pkgs.wl-mirror}/bin/wl-present mirror";
       };
       startup = [
         {
