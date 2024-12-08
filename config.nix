@@ -10,9 +10,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # for droidcam
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-  boot.kernelModules = [ "v4l2loopback" ];
-  programs.adb.enable = true;
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  # boot.kernelModules = [ "v4l2loopback" ];
+  # programs.adb.enable = true;
 
   # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -28,7 +28,6 @@
   networking.networkmanager.enable = true;
 
   hardware.graphics.enable = true;
-  hardware.opengl.enable = true;
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -61,10 +60,12 @@
   # };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.groups.wireshark = {};
+  
   users.users.dash = {
     isNormalUser = true;
     description = "Dashiell Elliott";
-    extraGroups = [ "networkmanager" "wheel" "video" "dialout" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "dialout" "docker" "wireshark" ];
     shell = pkgs.bash;
     packages = with pkgs; [];
   };
@@ -121,6 +122,11 @@
     config.common.default = "wlr";
   };
 
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+  };
+
   # List services that you want to enable:
 
   # platformio uploading
@@ -145,8 +151,8 @@
     dedicatedServer.openFirewall = true;
   };
 
-  # for connecting to WPI wifi while off campus
-  services.globalprotect.enable = true;
+  # for connecting to WPI wifi while off campus (removed from nixpkgs?)
+  # services.globalprotect.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
