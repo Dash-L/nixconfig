@@ -46,7 +46,7 @@
     # fonts
     google-fonts
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     font-awesome
     source-han-sans
@@ -58,7 +58,7 @@
 
     zoom-us
 
-    armcord
+    legcord
 
     dotnet-sdk_8
     # # Adds the 'hello' command to your environment. It prints a friendly
