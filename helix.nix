@@ -43,6 +43,13 @@
       };
     };
     languages = {
+      language-server.tinymist = {
+        config = {
+          exportPdf = "onDocumentHasTitle";
+          formatterMode = "typstyle";
+          outputPath = "$root/out/$dir/$name";
+        };
+      };
       language = [
         {
           name = "typescript";
