@@ -83,29 +83,29 @@
         #   events = "disabled";
         # };
       };
-      output = {
-        "${right}" = {
-          pos = "1920 0";
-        };
-        "${left}" = {
-          pos = "-1600 0";
-        };
-        "${middle}" = {
-          pos = "0 0";
-        };
-      };
-      workspaceOutputAssign = [
-        { output = left; workspace = "1"; }
-        { output = left; workspace = "2"; }
-        { output = left; workspace = "3"; }
-        { output = middle; workspace = "4"; }
-        { output = middle; workspace = "5"; }
-        { output = middle; workspace = "6"; }
-        { output = middle; workspace = "7"; }
-        { output = right; workspace = "8"; }
-        { output = right; workspace = "9"; }
-        { output = right; workspace = "10"; }
-      ];
+      # output = {
+      #   "${right}" = {
+      #     pos = "1920 0";
+      #   };
+      #   "${left}" = {
+      #     pos = "-1600 0";
+      #   };
+      #   "${middle}" = {
+      #     pos = "0 0";
+      #   };
+      # };
+      # workspaceOutputAssign = [
+      #   { output = left; workspace = "1"; }
+      #   { output = left; workspace = "2"; }
+      #   { output = left; workspace = "3"; }
+      #   { output = middle; workspace = "4"; }
+      #   { output = middle; workspace = "5"; }
+      #   { output = middle; workspace = "6"; }
+      #   { output = middle; workspace = "7"; }
+      #   { output = right; workspace = "8"; }
+      #   { output = right; workspace = "9"; }
+      #   { output = right; workspace = "10"; }
+      # ];
     };
   };
 }
