@@ -146,7 +146,7 @@
 
   # steam configs
   programs.steam = {
-    enable = false;
+    enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
