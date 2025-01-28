@@ -32,17 +32,13 @@
   home.packages = with pkgs; [
     zip unzip # basic shell utils
     light # brightness control
-    fuzzel # program launcher
-    grim slurp # screenshots
     wayfarer # screen recording
     vlc # video playback
     mako # notifications
-    wl-clipboard
     zellij # terminal multiplexer
     zathura # simple pdf viewer
     okular # fancier pdf viewer
     pavucontrol # audio control
-    swww # wallpapers
     # fonts
     google-fonts
     noto-fonts

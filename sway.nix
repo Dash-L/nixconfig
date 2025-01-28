@@ -34,6 +34,7 @@
       };
       startup = [
         {
+          # Wallpaper manager
           command = "${pkgs.swww}/bin/swww-daemon";
           always = false;
         }
