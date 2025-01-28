@@ -50,6 +50,9 @@
           outputPath = "$root/out/$dir/$name";
         };
       };
+      language-server.nixd = {
+        command = "${pkgs.nixd}/bin/nixd";
+      };
       language = [
         {
           name = "typescript";
@@ -66,6 +69,11 @@
             command = "prettier";
             args = ["--parser" "typescript"];
           };
+        }
+        {
+          name = "nix";
+          auto-format = true;
+          language-servers = ["nixd"];
         }
       ];
     };
