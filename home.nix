@@ -10,6 +10,7 @@
     ./pass.nix
     ./rnote.nix
     ./mako.nix
+    ./direnv.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -31,10 +32,14 @@
   # environment.
   home.packages = with pkgs; [
     zip unzip # basic shell utils
+    fuzzel
     light # brightness control
     wayfarer # screen recording
     vlc # video playback
     mako # notifications
+    swww # wallpapers
+    wl-clipboard
+    nixd
     zellij # terminal multiplexer
     zathura # simple pdf viewer
     okular # fancier pdf viewer
@@ -49,6 +54,8 @@
     source-han-sans-japanese
     source-han-serif-japanese
     iosevka
+
+    upower
 
     gamescope
 

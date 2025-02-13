@@ -13,10 +13,12 @@
       modifier = "Mod4";
       terminal = "alacritty";
       defaultWorkspace = "workspace number 1";
+      keycodebindings = {
+        "--release 133" = "exec pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel";
+      };
       keybindings = let 
                       mod = config.wayland.windowManager.sway.config.modifier;
       in lib.mkOptionDefault {
-        "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
         "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/$(date +'screenshot-%H:%M:%S.png') | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         # Audio controls
         "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%+";

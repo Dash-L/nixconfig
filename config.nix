@@ -87,6 +87,12 @@
 
   security.polkit.enable = true;
 
+  # printing
+  services.printing.enable = true;
+
+  # power management
+  services.upower.enable = true;
+
   # Pipewire support
   security.rtkit.enable = true;
   services.pipewire = {
@@ -133,16 +139,16 @@
   services.udev.packages = with pkgs; [ platformio-core.udev ];
 
   # Configure Intel Precise Touch
-  # microsoft-surface.ipts = {
-  #   enable = true; # not technically necessary, enabled by surface hardware config
-  #   config = {
-  #     Touch = {
-  #       # Disable = true;
-  #       DisableOnPalm = true;
-  #       DisableOnStylus = true;
-  #     };
-  #   };
-  # };
+  services.iptsd = {
+    enable = true; # not technically necessary, enabled by surface hardware config
+    config = {
+      Touchscreen = {
+        # Disable = true;
+        # DisableOnPalm = true;
+        DisableOnStylus = true;
+      };
+    };
+  };
 
   # steam configs
   programs.steam = {
