@@ -1,0 +1,76 @@
+window {
+  background-color: transparent;
+}
+
+.time {
+  padding: 0 10px;
+  border-radius: 10px;
+  background-color: #515151;
+  color: white;
+}
+
+.workspaces {
+  padding: 3px 10px;
+  border-radius: 10px;
+  background-color: #515151;
+  color: white;
+  margin-top: 2px;
+}
+
+.workspace {
+  transition: 100ms linear;
+  border-radius: 100%;
+}
+
+.bar-left .text-values {
+  padding: 0 10px;
+  border-radius: 10px;
+  background-color: #515151;
+  color: white;
+}
+
+/* slider { */
+  /* all: unset; */
+  /* color: #515151; */
+/* } */
+
+/* scale trough highlight { */
+  /* all: unset; */
+  /* background-color: #D35D6E; */
+  /* color: #000000; */
+  /* border-radius: 10px; */
+/* } */
+
+/* scale trough { */
+  /* all: unset; */
+  /* background-color: #4e4e4e; */
+  /* border-radius: 50px; */
+  /* min-height: 3px; */
+  /* min-width: 50px; */
+/* } */
+
+button {
+  all: unset;
+}
+
+.empty {
+  background-color: white;
+  opacity: 0.35;
+  min-width: 9px;
+  min-height: 9px;
+  margin-top: 3px;
+  margin-bottom: 2px;
+}
+
+.occupied {
+  background-color: white;
+  min-width: 12px;
+  min-height: 12px;
+}
+
+.focused {
+  background-color: black;
+  border-radius: 20px;
+  min-width: 20px;
+  min-height: 12px;
+}

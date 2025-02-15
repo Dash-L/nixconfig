@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  programs.eww = {
+    enable = true;
+    configDir = ./eww-config;
+  };
   wayland.windowManager.sway =
   let
     left = "DP-4";
@@ -14,35 +18,46 @@
       terminal = "alacritty";
       defaultWorkspace = "workspace number 1";
       keycodebindings = {
-        "--release 133" = "exec pkill fuzzel || ${pkgs.fuzzel}/bin/fuzzel";
+        # "--release 133" = "exec ${pkgs.eww}/bin/eww update bar-visible=false";
+        # "133" = "exec ${pkgs.eww}/bin/eww update bar-visible=true";
       };
-      keybindings = let 
-                      mod = config.wayland.windowManager.sway.config.modifier;
-      in lib.mkOptionDefault {
-        "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/$(date +'screenshot-%H:%M:%S.png') | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
-        # Audio controls
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%-";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
-        # Brightness controls
-        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
-        # Screen mirroring
-        "${mod}+m" = "exec ${pkgs.wl-mirror}/bin/wl-present mirror";
-      };
+      keybindings =
+        let
+          mod = modifier;
+        in lib.mkOptionDefault {
+          "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
+          "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/$(date +'screenshot-%H:%M:%S.png') | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
+          # Audio controls
+          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%+";
+          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%-";
+          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+          # Brightness controls
+          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
+          "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+          # Screen mirroring
+          "${mod}+m" = "exec ${pkgs.wl-mirror}/bin/wl-present mirror";
+        };
       startup = [
         {
           # Wallpaper manager
           command = "${pkgs.swww}/bin/swww-daemon";
           always = false;
         }
+        {
+          command = "pkill eww; ${pkgs.eww}/bin/eww open bar";
+          always = true;
+        }
+        {
+          command = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+          always = false;
+        }
       ];
       gaps = {
-        outer = 5;
+        outer = 4;
         inner = 2;
       };
       window = {
@@ -53,8 +68,15 @@
               title = "Wayfarer";
             };
           }
+          {
+            command = "border pixel 1";
+            criteria = {
+              class = ".*";
+            };
+          }
         ];
       };
+      bars = [];
       input = {
         "1118:2479:Microsoft_Surface_045E:09AF_Touchpad" = {
           click_method = "clickfinger";

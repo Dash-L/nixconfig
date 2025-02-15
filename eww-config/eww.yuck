@@ -1,0 +1,77 @@
+(defwidget time-display []
+  (box :class "time"
+       :orientation "h"
+       :halign "center"
+    {formattime(EWW_TIME, "%F %a %X")}))
+
+(defpoll battery-icon :initial "battery-full-symbolic"
+                      :interval "2s"
+  `upower -i /org/freedesktop/UPower/devices/DisplayDevice | grep -Eo "'(.*)'" | tr -d "\n'"`)
+
+(defwidget battery-display []
+  (box :class "battery"
+       :orientation "h"
+       :spacing 5
+       :space-evenly false
+    "${EWW_BATTERY.BAT1.capacity}%"
+    (image :icon {battery-icon})))
+
+(defwidget diskusage-display []
+  (box :class "disk"
+       :orientation "h"
+       :spacing 5
+       :space-evenly false
+      "${round(EWW_DISK["/"].free / powi(10, 9), 2)} GB"
+      (image :icon "drive-harddisk-symbolic")))
+
+(defwidget text-values []
+  (box :class "text-values"
+       :orientation "h"
+       :spacing 5
+       :space-evenly false
+    (diskusage-display)
+    "|"
+    (battery-display)))
+
+(defwidget bar-left []
+  (box :class "bar-left"
+       :orientation "h"
+       :halign "end"
+       :space-evenly false
+       :spacing 5
+    (text-values)
+    (systray)))
+
+(defvar possible-workspaces "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]")
+(deflisten workspaces :initial "[]"
+  `swaymsg -m -t subscribe '["workspace"]' | ./workspace-watcher.sh`)
+
+(defwidget workspaces-display []
+  (box :class "workspaces"
+       :orientation "h"
+       :halign "start"
+       :valign "center"
+       :space-evenly false
+       :spacing 5
+    (for workspace in possible-workspaces
+        (button :class "workspace ${jq(workspaces, 'isempty(.[] | select(.num == ${workspace}))') ? "empty" : jq(workspaces, 'isempty(.[] | select(.num == ${workspace} and .focused == true))') ? "occupied" : "focused"}"
+             :valign "center"
+             :halign "center"
+             :onclick `swaymsg workspace ${workspace}`))))
+
+(defwindow bar
+           :monitor '["<primary>", 0]'
+           :geometry (geometry :x "0%"
+                               :y "2px"
+                               :width "95%"
+                               :anchor "top center")
+           :stacking "fg"
+           :windowtype "dock"
+           :exclusive true
+           :wm-ignore false
+    (centerbox :class "main"
+         :orientation "horizontal"
+      (workspaces-display)
+      (time-display)
+      (bar-left)))
+

@@ -125,7 +125,13 @@
     enable = true;
     xdgOpenUsePortal = true;
     wlr.enable = true;
-    config.common.default = "wlr";
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    config = {
+      common.default = ["wlr" "gtk"];
+    };
   };
 
   programs.wireshark = {

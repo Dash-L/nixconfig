@@ -28,10 +28,15 @@
 
   programs.bash.enable = true;
 
+  programs.zellij.settings.theme = "catppuccin-macchiato";
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     zip unzip # basic shell utils
+    jq
+    networkmanagerapplet
+    xdg-utils
     fuzzel
     light # brightness control
     wayfarer # screen recording
@@ -85,6 +90,30 @@
   home.pointerCursor = {
     name = "catppuccin-mocha-mauve-cursors";
     package = pkgs.catppuccin-cursors.mochaMauve;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Nordic-darker";
+      package = pkgs.nordic;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    gtk3.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
+
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-application-prefer-dark-theme=1
+      '';
+    };
   };
 
   fonts.fontconfig.enable = true;
