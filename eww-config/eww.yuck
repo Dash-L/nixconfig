@@ -6,7 +6,7 @@
 
 (defpoll battery-icon :initial "battery-full-symbolic"
                       :interval "2s"
-  `upower -i /org/freedesktop/UPower/devices/DisplayDevice | grep -Eo "'(.*)'" | tr -d "\n'"`)
+  `upower -i /org/freedesktop/UPower/devices/DisplayDevice | grep -Eo "'(.*)'" | tr -d "'"`)
 
 (defwidget battery-display []
   (box :class "battery"
