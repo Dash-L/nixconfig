@@ -15,7 +15,7 @@
     enable = true;
     config = rec {
       modifier = "Mod4";
-      terminal = "alacritty";
+      terminal = "foot";
       defaultWorkspace = "workspace number 1";
       keycodebindings = {
         # "--release 133" = "exec ${pkgs.eww}/bin/eww update bar-visible=false";

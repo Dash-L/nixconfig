@@ -4,7 +4,7 @@
   imports = [
     ./sway.nix
     ./helix.nix
-    ./alacritty.nix
+    ./foot.nix
     ./firefox.nix
     ./git.nix
     ./pass.nix
@@ -38,7 +38,6 @@
     networkmanagerapplet
     xdg-utils
     fuzzel
-    light # brightness control
     wayfarer # screen recording
     vlc # video playback
     mako # notifications
@@ -110,8 +109,8 @@
     };
 
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
+      AdwStyleManager = ''
+        color-scheme=ADW_COLOR_SCHEME_PREFER_DARK
       '';
     };
   };
