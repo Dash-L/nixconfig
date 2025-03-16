@@ -54,7 +54,7 @@
        :space-evenly false
        :spacing 5
     (for workspace in possible-workspaces
-        (button :class "workspace ${jq(workspaces, 'isempty(.[] | select(.num == ${workspace}))') ? "empty" : jq(workspaces, 'isempty(.[] | select(.num == ${workspace} and .focused == true))') ? "occupied" : "focused"}"
+        (button :class "workspace ${jq(workspaces, 'isempty(.[] | select(.num == ${workspace}))') ? "empty" : jq(workspaces, 'isempty(.[] | select(.num == ${workspace} and .focused == true))') ? jq(workspaces, 'isempty(.[] | select(.num == ${workspace} and .urgent == true))') ? "occupied" : "urgent" : "focused"}"
              :valign "center"
              :halign "center"
              :onclick `swaymsg workspace ${workspace}`))))

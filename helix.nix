@@ -84,6 +84,10 @@
           auto-format = true;
           language-servers = ["nixd"];
         }
+        {
+          name = "typst";
+          language-servers = ["tinymist"];
+        }
       ];
     };
   };

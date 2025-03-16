@@ -68,6 +68,12 @@ button {
   min-height: 12px;
 }
 
+.urgent {
+  background-color: red;
+  min-width: 12px;
+  min-height: 12px;
+}
+
 .focused {
   background-color: black;
   border-radius: 20px;

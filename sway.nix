@@ -48,8 +48,8 @@
           always = false;
         }
         {
-          command = "pkill eww; ${pkgs.eww}/bin/eww open bar";
-          always = true;
+          command = "${pkgs.eww}/bin/eww open bar";
+          always = false;
         }
         {
           command = "${pkgs.networkmanagerapplet}/bin/nm-applet";
