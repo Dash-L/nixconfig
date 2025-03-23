@@ -20,6 +20,12 @@
       enable = true;
       enableSSHSupport = true;
     };
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 7d --keep 2";
+    };
   };
 
   environment.systemPackages = with pkgs; [
