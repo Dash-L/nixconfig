@@ -1,16 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, zen-browser, system, ... }:
 
 {
   imports = [
-    ./sway.nix
-    ./helix.nix
-    ./foot.nix
-    ./firefox.nix
-    ./git.nix
-    ./pass.nix
-    ./rnote.nix
-    ./mako.nix
-    ./direnv.nix
+    ./home/sway.nix
+    ./home/helix.nix
+    ./home/foot.nix
+    ./home/firefox.nix
+    ./home/git.nix
+    ./home/pass.nix
+    ./home/rnote.nix
+    ./home/mako.nix
+    ./home/direnv.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -33,7 +33,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    zip unzip # basic shell utils
+    zip unzip fd ripgrep fzf # basic shell utils
     jq
     networkmanagerapplet
     xdg-utils
@@ -43,10 +43,9 @@
     mako # notifications
     swww # wallpapers
     wl-clipboard
-    nixd
+    nixd # lsp for .nix files
     zellij # terminal multiplexer
     zathura # simple pdf viewer
-    okular # fancier pdf viewer
     pavucontrol # audio control
     # fonts
     google-fonts
@@ -58,16 +57,12 @@
     source-han-sans-japanese
     source-han-serif-japanese
     iosevka
-
+    # end fonts
     upower
-
     gamescope
-
     zoom-us
-
-    legcord
-
-    dotnet-sdk_8
+    legcord # discord client
+    zen-browser.packages."${system}".default
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -118,11 +113,11 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
+      "text/html" = "zen.desktop";
+      "x-scheme-handler/http" = "zen.desktop";
+      "x-scheme-handler/https" = "zen.desktop";
+      "x-scheme-handler/about" = "zen.desktop";
+      "x-scheme-handler/unknown" = "zen.desktop";
     };
   };
 
