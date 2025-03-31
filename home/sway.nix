@@ -17,42 +17,38 @@
       modifier = "Mod4";
       terminal = "foot";
       defaultWorkspace = "workspace number 1";
-      keycodebindings = {
-        # "--release 133" = "exec ${pkgs.eww}/bin/eww update bar-visible=false";
-        # "133" = "exec ${pkgs.eww}/bin/eww update bar-visible=true";
-      };
       keybindings =
         let
           mod = modifier;
         in lib.mkOptionDefault {
-          "${mod}+d" = "exec ${pkgs.fuzzel}/bin/fuzzel";
-          "${mod}+c" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/$(date +'screenshot-%H:%M:%S.png') | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
+          "${mod}+d" = "exec ${lib.getExe pkgs.fuzzel}";
+          "${mod}+c" = "exec ${lib.getExe pkgs.grim} -g \"$(${lib.getExe pkgs.slurp})\" - | tee /tmp/$(date +'screenshot-%H:%M:%S.png') | ${lib.getExe' pkgs.wl-clipboard "wl-copy"} -t image/png";
           # Audio controls
-          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%+";
-          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 1%-";
-          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
-          "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-          "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
-          "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
-          "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+          "XF86AudioRaiseVolume" = "exec ${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_SINK@ 1%+";
+          "XF86AudioLowerVolume" = "exec ${lib.getExe' pkgs.wireplumber "wpctl"} set-volume @DEFAULT_SINK@ 1%-";
+          "XF86AudioMute" = "exec ${lib.getExe' pkgs.wireplumber "wpctl"} set-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+          "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+          "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
+          "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
           # Brightness controls
-          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
-          "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+";
+          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} set 5%-";
+          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} set 5%+";
           # Screen mirroring
-          "${mod}+m" = "exec ${pkgs.wl-mirror}/bin/wl-present mirror";
+          "${mod}+m" = "exec ${lib.getExe' pkgs.wl-mirror "wl-present"} mirror";
         };
       startup = [
         {
           # Wallpaper manager
-          command = "${pkgs.swww}/bin/swww-daemon";
+          command = "${lib.getExe pkgs.swww}";
           always = false;
         }
         {
-          command = "${pkgs.eww}/bin/eww open bar";
+          command = "${lib.getExe pkgs.eww} open bar";
           always = false;
         }
         {
-          command = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+          command = "${lib.getExe pkgs.networkmanagerapplet}";
           always = false;
         }
       ];
@@ -101,12 +97,6 @@
         "1118:3127:IPTS_Touch" = {
           map_to_output = "${right}";
         };
-        # "1118:3127:Intel_Touch_Host_Controller_Touchscreen" = {
-        #   events = "disabled";
-        # };
-        # "1118:3127:IPTS_Touch" = {
-        #   events = "disabled";
-        # };
       };
       # output = {
       #   "${right}" = {
