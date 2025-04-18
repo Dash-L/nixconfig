@@ -8,7 +8,7 @@
       ".direnv"
     ];
     settings = {
-      theme = "catppuccin_macchiato";
+      # theme = "catppuccin_macchiato";
       keys = {
         normal = {
           ret = ["open_below" "normal_mode"];

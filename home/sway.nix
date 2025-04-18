@@ -40,7 +40,7 @@
       startup = [
         {
           # Wallpaper manager
-          command = "${lib.getExe pkgs.swww}";
+          command = "${lib.getExe' pkgs.swww "swww-daemon"}";
           always = false;
         }
         {

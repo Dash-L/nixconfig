@@ -13,9 +13,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, zen-browser, lix-module, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, zen-browser, lix-module, catppuccin, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -29,6 +33,7 @@
         inherit pkgs;
 
         modules = [
+          catppuccin.nixosModules.catppuccin
           ./hosts/dash-laptop/configuration.nix
           ./system
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -36,7 +41,12 @@
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.dash = import ./home.nix;
+            home-manager.users.dash = {
+              imports = [
+                ./home.nix
+                catppuccin.homeModules.catppuccin
+              ];
+            };
             home-manager.extraSpecialArgs = { inherit zen-browser system; };
           }
         ];

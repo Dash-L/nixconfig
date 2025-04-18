@@ -9,4 +9,10 @@
     ./services.nix
     ./users.nix
   ];
+
+  catppuccin = {
+    flavor = "macchiato";
+    accent = "rosewater";
+    enable = true;
+  };
 }

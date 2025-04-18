@@ -28,7 +28,23 @@
 
   programs.bash.enable = true;
 
-  programs.zellij.settings.theme = "catppuccin-macchiato";
+  catppuccin = {
+    flavor = "macchiato";
+    accent = "rosewater";
+    enable = true;
+    cursors = {
+      enable = true;
+      accent = "peach";
+      flavor = "mocha";
+    };
+    starship.enable = true;
+  };
+
+  programs.fuzzel.enable = true;
+  programs.zellij = {
+    enable = true;
+    enableBashIntegration = false;
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -37,14 +53,12 @@
     jq
     networkmanagerapplet
     xdg-utils
-    fuzzel
     wayfarer # screen recording
     vlc # video playback
     mako # notifications
     swww # wallpapers
     wl-clipboard
     nixd # lsp for .nix files
-    zellij # terminal multiplexer
     zathura # simple pdf viewer
     pavucontrol # audio control
     # fonts
@@ -81,17 +95,17 @@
     # '')
   ];
 
-  home.pointerCursor = {
-    name = "catppuccin-mocha-mauve-cursors";
-    package = pkgs.catppuccin-cursors.mochaMauve;
-  };
+  # home.pointerCursor = {
+  #   name = "catppuccin-mocha-mauve-cursors";
+  #   package = pkgs.catppuccin-cursors.mochaMauve;
+  # };
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Nordic-darker";
-      package = pkgs.nordic;
-    };
+    # theme = {
+    #   name = "Nordic-darker";
+    #   package = pkgs.nordic;
+    # };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
