@@ -1,4 +1,4 @@
-{ config, pkgs, zen-browser, system, ... }:
+{ config, pkgs, zen-browser, ... }:
 
 {
   imports = [
@@ -76,7 +76,7 @@
     gamescope
     zoom-us
     legcord # discord client
-    zen-browser.packages."${system}".default
+    zen-browser
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -193,6 +193,7 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
+    BROWSER = "zen";
   };
 
   # Let Home Manager install and manage itself.

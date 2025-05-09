@@ -50,7 +50,7 @@
                 catppuccin.homeModules.catppuccin
               ];
             };
-            home-manager.extraSpecialArgs = { inherit zen-browser system; };
+            home-manager.extraSpecialArgs = { zen-browser=zen-browser.packages.${system}.default; };
           }
         ];
       };

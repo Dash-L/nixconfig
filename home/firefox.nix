@@ -2,7 +2,7 @@
 
 {
   programs.firefox = {
-    enable = true;
+    enable = false;
     profiles."763ofwon.default" = {
 #       userChrome = ''
 # #TabsToolbar {
