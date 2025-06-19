@@ -1,4 +1,4 @@
-{ config, pkgs, zen-browser, ... }:
+{ config, pkgs, zen-browser, firefox-sidebar-css, ... }:
 
 {
   imports = [
@@ -49,11 +49,14 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    uutils-coreutils-noprefix # coreutils replacement
+    du-dust # du replacement
+    xh # httpie replacement
     zip unzip fd ripgrep fzf # basic shell utils
     jq
     networkmanagerapplet
     xdg-utils
-    wayfarer # screen recording
+    # wayfarer # screen recording
     vlc # video playback
     mako # notifications
     swww # wallpapers
@@ -76,7 +79,10 @@
     gamescope
     zoom-us
     legcord # discord client
-    zen-browser
+    remmina # remote desktop client
+    # zen-browser
+    kicad
+    chirp
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -127,32 +133,32 @@
   xdg.configFile."mimeapps.list".force = true;
   xdg.mimeApps = {
     enable = true;
-    defaultApplications = {
-      "text/html" = "zen.desktop";
-      "x-scheme-handler/about" = "zen.desktop";
-      "x-scheme-handler/http" = "zen.desktop";
-      "x-scheme-handler/https" = "zen.desktop";
-      "x-scheme-handler/unknown" = "zen.desktop";
-      "x-scheme-handler/chrome" = "zen.desktop";
-      "application/x-extension-htm" = "zen.desktop";
-      "application/x-extension-html" = "zen.desktop";
-      "application/x-extension-shtml" = "zen.desktop";
-      "application/xhtml+xml" = "zen.desktop";
-      "application/x-extension-xhtml" = "zen.desktop";
-      "application/x-extension-xht" = "zen.desktop";
-    };
-    associations.added = {
-      "x-scheme-handler/http" = "zen.desktop";
-      "x-scheme-handler/https" = "zen.desktop";
-      "x-scheme-handler/chrome" = "zen.desktop";
-      "text/html" = "zen.desktop";
-      "application/x-extension-htm" = "zen.desktop";
-      "application/x-extension-html" = "zen.desktop";
-      "application/x-extension-shtml" = "zen.desktop";
-      "application/xhtml+xml" = "zen.desktop";
-      "application/x-extension-xhtml" = "zen.desktop";
-      "application/x-extension-xht" = "zen.desktop";
-    };
+    # defaultApplications = {
+    #   "text/html" = "zen.desktop";
+    #   "x-scheme-handler/about" = "zen.desktop";
+    #   "x-scheme-handler/http" = "zen.desktop";
+    #   "x-scheme-handler/https" = "zen.desktop";
+    #   "x-scheme-handler/unknown" = "zen.desktop";
+    #   "x-scheme-handler/chrome" = "zen.desktop";
+    #   "application/x-extension-htm" = "zen.desktop";
+    #   "application/x-extension-html" = "zen.desktop";
+    #   "application/x-extension-shtml" = "zen.desktop";
+    #   "application/xhtml+xml" = "zen.desktop";
+    #   "application/x-extension-xhtml" = "zen.desktop";
+    #   "application/x-extension-xht" = "zen.desktop";
+    # };
+    # associations.added = {
+    #   "x-scheme-handler/http" = "zen.desktop";
+    #   "x-scheme-handler/https" = "zen.desktop";
+    #   "x-scheme-handler/chrome" = "zen.desktop";
+    #   "text/html" = "zen.desktop";
+    #   "application/x-extension-htm" = "zen.desktop";
+    #   "application/x-extension-html" = "zen.desktop";
+    #   "application/x-extension-shtml" = "zen.desktop";
+    #   "application/xhtml+xml" = "zen.desktop";
+    #   "application/x-extension-xhtml" = "zen.desktop";
+    #   "application/x-extension-xht" = "zen.desktop";
+    # };
   };
 
   fonts.fontconfig.enable = true;
@@ -193,7 +199,7 @@
   #
   home.sessionVariables = {
     EDITOR = "hx";
-    BROWSER = "zen";
+    BROWSER = "firefox";
   };
 
   # Let Home Manager install and manage itself.

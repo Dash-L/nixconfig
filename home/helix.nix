@@ -60,7 +60,7 @@
           name = "typescript";
           auto-format = false;
           formatter = {
-            command = "$prettier";
+            command = "prettier";
             args = ["--parser" "typescript"];
           };
         }
@@ -80,6 +80,12 @@
         {
           name = "typst";
           language-servers = ["tinymist"];
+        }
+        {
+          name = "cpp";
+          formatter = {
+            command = "clang-format";
+          };
         }
       ];
     };
