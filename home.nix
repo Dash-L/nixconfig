@@ -54,6 +54,7 @@
     xh # httpie replacement
     zip unzip fd ripgrep fzf # basic shell utils
     jq
+    libqalculate
     networkmanagerapplet
     xdg-utils
     # wayfarer # screen recording
