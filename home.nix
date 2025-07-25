@@ -6,6 +6,7 @@
     ./home/helix.nix
     ./home/foot.nix
     ./home/firefox.nix
+    ./home/thunderbird.nix
     ./home/git.nix
     ./home/pass.nix
     ./home/rnote.nix
@@ -38,6 +39,8 @@
       flavor = "mocha";
     };
     starship.enable = true;
+    firefox.profiles.default.enable = false;
+    firefox.profiles.main.enable = true;
   };
 
   programs.fuzzel.enable = true;
