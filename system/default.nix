@@ -8,6 +8,7 @@
     ./security.nix
     ./services.nix
     ./users.nix
+    # ./libcamera.nix
   ];
 
   catppuccin = {
