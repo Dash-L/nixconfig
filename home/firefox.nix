@@ -86,7 +86,7 @@ in {
               pinnedTabsPosition = "top";
               hScrollAction = "switch_panels";
               hideEmptyPanels = false;
-              activateAfterClosing = "none";
+              activateAfterClosing = "prev";
               activateAfterClosingStayInPanel = true;
               newTabCtxReopen = true;
             };
