@@ -60,5 +60,6 @@
       };
     in {
       nixosConfigurations.dash-laptop = baseConfig ./hosts/dash-laptop/configuration.nix;
+      nixosConfigurations.dash-desktop= baseConfig ./hosts/dash-desktop/configuration.nix;
     };
 }
