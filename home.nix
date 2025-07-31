@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./home/sway.nix
     ./home/helix.nix
     ./home/foot.nix
     ./home/firefox.nix

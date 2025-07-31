@@ -59,7 +59,7 @@
              :halign "center"
              :onclick `swaymsg workspace ${workspace}`))))
 
-(defwindow bar
+(defwindow laptop-bar
            :monitor '["<primary>", 0]'
            :geometry (geometry :x "0%"
                                :y "2px"

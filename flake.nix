@@ -36,7 +36,7 @@
         };
       };
 
-      baseConfig = extraModules: nixpkgs.lib.nixosSystem {
+      baseConfig = extraModules: extraHMModules: nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
         modules = [
@@ -50,14 +50,14 @@
               imports = [
                 ./home.nix
                 catppuccin.homeModules.catppuccin
-              ];
+              ] ++ extraHMModules;
             };
             home-manager.extraSpecialArgs = { zen-browser=zen-browser.packages.${system}.default; inherit firefox-sidebar-css; };
           }
         ] ++ extraModules;
       };
     in {
-      nixosConfigurations.dash-laptop = baseConfig [ ./hosts/dash-laptop/configuration.nix nixos-hardware.nixosModules.microsoft-surface-pro-intel ];
-      nixosConfigurations.dash-desktop= baseConfig [ ./hosts/dash-desktop/configuration.nix ];
+      nixosConfigurations.dash-laptop = baseConfig [ ./hosts/dash-laptop/configuration.nix nixos-hardware.nixosModules.microsoft-surface-pro-intel ] [ ./home/sway-laptop.nix ];
+      nixosConfigurations.dash-desktop = baseConfig [ ./hosts/dash-desktop/configuration.nix ] [ ./home/sway-desktop.nix ];
     };
 }

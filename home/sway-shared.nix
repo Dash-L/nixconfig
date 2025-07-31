@@ -5,13 +5,7 @@
     enable = true;
     configDir = ./eww-config;
   };
-  wayland.windowManager.sway =
-  let
-    left = "DP-4";
-    middle = "DP-5";
-    right = "eDP-1";
-  in
-    {
+  wayland.windowManager.sway = {
     enable = true;
     config = rec {
       modifier = "Mod4";
@@ -44,10 +38,6 @@
           always = false;
         }
         {
-          command = "${lib.getExe pkgs.eww} open bar";
-          always = false;
-        }
-        {
           command = "${lib.getExe pkgs.networkmanagerapplet}";
           always = false;
         }
@@ -74,15 +64,6 @@
       };
       bars = [];
       input = {
-        "1118:2479:Microsoft_Surface_045E:09AF_Touchpad" = {
-          click_method = "clickfinger";
-          drag = "enabled";
-          natural_scroll = "enabled";
-          middle_emulation = "enabled";
-          tap = "enabled";
-          tap_button_map = "lrm";
-          scroll_factor = "0.5";
-        };
         "type:keyboard" = {
           repeat_delay = "200";
           repeat_rate = "50";
@@ -91,36 +72,7 @@
           accel_profile = "flat";
           pointer_accel = "-0.5";
         };
-        "1118:3127:IPTS_Stylus" = {
-          map_to_output = "${right}";
-        };
-        "1118:3127:IPTS_Touch" = {
-          map_to_output = "${right}";
-        };
       };
-      # output = {
-      #   "${right}" = {
-      #     pos = "1920 0";
-      #   };
-      #   "${left}" = {
-      #     pos = "-1600 0";
-      #   };
-      #   "${middle}" = {
-      #     pos = "0 0";
-      #   };
-      # };
-      # workspaceOutputAssign = [
-      #   { output = left; workspace = "1"; }
-      #   { output = left; workspace = "2"; }
-      #   { output = left; workspace = "3"; }
-      #   { output = middle; workspace = "4"; }
-      #   { output = middle; workspace = "5"; }
-      #   { output = middle; workspace = "6"; }
-      #   { output = middle; workspace = "7"; }
-      #   { output = right; workspace = "8"; }
-      #   { output = right; workspace = "9"; }
-      #   { output = right; workspace = "10"; }
-      # ];
     };
   };
 }
