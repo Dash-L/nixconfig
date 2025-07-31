@@ -12,9 +12,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Microsoft Surface specific configs
 
   services.thermald.enable = true;

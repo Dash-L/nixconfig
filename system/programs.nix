@@ -28,6 +28,12 @@
     };
   };
 
+  catppuccin = {
+    flavor = "macchiato";
+    accent = "rosewater";
+    enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     helix
     wget

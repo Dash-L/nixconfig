@@ -11,9 +11,6 @@
     # ./libcamera.nix
   ];
 
-  catppuccin = {
-    flavor = "macchiato";
-    accent = "rosewater";
-    enable = true;
-  };
+  # flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
