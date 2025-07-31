@@ -35,13 +35,13 @@
           allowUnfree = true;
         };
       };
-    in {
-      nixosConfigurations.dash-laptop = nixpkgs.lib.nixosSystem {
+
+      baseConfig = hostConfigFile: nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
         modules = [
           catppuccin.nixosModules.catppuccin
-          ./hosts/dash-laptop/configuration.nix
+          hostConfigFile
           ./system
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
           lix-module.nixosModules.default
@@ -58,5 +58,7 @@
           }
         ];
       };
+    in {
+      nixosConfigurations.dash-laptop = baseConfig ./hosts/dash-laptop/configuration.nix;
     };
 }
