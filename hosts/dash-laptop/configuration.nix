@@ -12,6 +12,23 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # This device's wireguard config
+  networking.wg-quick.interfaces = {
+    serverworks = {
+      privateKeyFile = "/etc/wireguard/priv-key";
+      address = [ "10.0.0.5" ];
+      dns = [ "10.0.0.1" ];
+
+      peers = [ {
+        publicKey = "LDqLLPMJPuj1w2ea/JqEnDHcqeUxDqzgcu/rLAe8on4=";
+        endpoint = "75.130.94.103:14438";
+        persistentKeepalive = 25;
+        allowedIPs = [ "10.0.0.0/24" ];
+      } ];
+    };
+  };
+
+
   # Microsoft Surface specific configs
 
   services.thermald.enable = true;
