@@ -12,6 +12,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.hostName = "dash-laptop"; # Define your hostname.
+
   # This device's wireguard config
   networking.wg-quick.interfaces = {
     serverworks = {
