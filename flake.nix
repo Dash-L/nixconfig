@@ -36,14 +36,12 @@
         };
       };
 
-      baseConfig = hostConfigFile: nixpkgs.lib.nixosSystem {
+      baseConfig = extraModules: nixpkgs.lib.nixosSystem {
         inherit pkgs;
 
         modules = [
-          catppuccin.nixosModules.catppuccin
-          hostConfigFile
           ./system
-          nixos-hardware.nixosModules.microsoft-surface-pro-intel
+          catppuccin.nixosModules.catppuccin
           lix-module.nixosModules.default
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
@@ -56,10 +54,10 @@
             };
             home-manager.extraSpecialArgs = { zen-browser=zen-browser.packages.${system}.default; inherit firefox-sidebar-css; };
           }
-        ];
+        ] ++ extraModules;
       };
     in {
-      nixosConfigurations.dash-laptop = baseConfig ./hosts/dash-laptop/configuration.nix;
-      nixosConfigurations.dash-desktop= baseConfig ./hosts/dash-desktop/configuration.nix;
+      nixosConfigurations.dash-laptop = baseConfig [ ./hosts/dash-laptop/configuration.nix nixos-hardware.nixosModules.microsoft-surface-pro-intel ];
+      nixosConfigurations.dash-desktop= baseConfig [ ./hosts/dash-desktop/configuration.nix ];
     };
 }
