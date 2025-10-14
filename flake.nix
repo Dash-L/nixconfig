@@ -4,10 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,12 +17,12 @@
       flake = false;
     };
     catppuccin = {
-      url = "github:catppuccin/nix";
+      url = "github:catppuccin/nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, zen-browser, lix-module, catppuccin, firefox-sidebar-css, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, zen-browser, catppuccin, firefox-sidebar-css, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -42,7 +38,6 @@
         modules = [
           ./system
           catppuccin.nixosModules.catppuccin
-          lix-module.nixosModules.default
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

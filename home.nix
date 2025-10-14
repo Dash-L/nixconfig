@@ -38,7 +38,6 @@
       flavor = "mocha";
     };
     starship.enable = true;
-    firefox.profiles.default.enable = false;
     firefox.profiles.main.enable = true;
   };
 
@@ -115,10 +114,10 @@
     #   name = "Nordic-darker";
     #   package = pkgs.nordic;
     # };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
+    # iconTheme = {
+    #   name = "Papirus-Dark";
+    #   package = pkgs.papirus-icon-theme;
+    # };
 
     gtk3.extraConfig = {
       Settings = ''

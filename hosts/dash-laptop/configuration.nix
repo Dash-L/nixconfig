@@ -18,20 +18,22 @@
   networking.wg-quick.interfaces = {
     serverworks = {
       privateKeyFile = "/etc/wireguard/priv-key";
-      address = [ "10.0.0.5" ];
-      dns = [ "10.0.0.1" ];
+      address = [ "10.0.9.5" ];
+      dns = [ "10.0.9.1" ];
 
       peers = [ {
         publicKey = "LDqLLPMJPuj1w2ea/JqEnDHcqeUxDqzgcu/rLAe8on4=";
-        endpoint = "75.130.94.103:14438";
+        endpoint = "47.14.89.93:14438";
         persistentKeepalive = 25;
-        allowedIPs = [ "10.0.0.0/24" ];
+        allowedIPs = [ "10.0.9.0/24" ];
       } ];
     };
   };
 
 
   # Microsoft Surface specific configs
+
+  hardware.microsoft-surface.kernelVersion = "stable";
 
   services.thermald.enable = true;
   services.thermald.configFile = ./thermal-conf.xml;
