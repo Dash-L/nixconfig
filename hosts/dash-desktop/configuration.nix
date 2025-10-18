@@ -40,8 +40,20 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
+  networking.wg-quick.interfaces = {
+    serverworks = {
+      privateKeyFile = "/etc/wireguard/priv-key";
+      address = [ "10.0.9.10" ];
+      dns = [ "10.0.9.1" ];
 
-  
+      peers = [ {
+        publicKey = "LDqLLPMJPuj1w2ea/JqEnDHcqeUxDqzgcu/rLAe8on4=";
+        endpoint = "47.14.89.93:14438";
+        persistentKeepalive = 25;
+        allowedIPs = [ "10.0.9.0/24" ];
+      } ];
+    };
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
