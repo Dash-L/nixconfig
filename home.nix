@@ -76,6 +76,7 @@
     source-han-sans-japanese
     source-han-serif-japanese
     iosevka
+    nerd-fonts.space-mono
     # end fonts
     upower
     gamescope

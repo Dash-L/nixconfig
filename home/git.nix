@@ -4,9 +4,11 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Dashiell Elliott";
-    userEmail = "dashiell.elliott@yahoo.com";
-    extraConfig.init.defaultBranch = "main";
+    settings = {
+      user.name = "Dashiell Elliott";
+      user.email = "dashiell.elliott@yahoo.com";
+      init.defaultBranch = "main";
+    };
   };
   programs.gh = {
     enable = true;

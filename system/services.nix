@@ -6,30 +6,32 @@
     upower.enable = true;
 
     # Pipewire support
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      wireplumber.extraConfig = {
-        bluetoothEnhancements = {
-      		"monitor.bluez.properties" = {
-      			"bluez5.enable-sbc-xq" = true;
-      			"bluez5.enable-msbc" = true;
-      			"bluez5.enable-hw-volume" = true;
-      			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
-          };
-        };
-        # XXX: hopefully temporary
-        disableCamera = {
-          "wireplumber.profiles" = {
-            main = {
-              "monitor.libcamera" = "disabled";
-            };
-          };
-        };
-      };
-    };
+    pulseaudio.enable = true;
+    pipewire.enable = false;
+    # pipewire = {
+    #   enable = true;
+    #   alsa.enable = true;
+    #   alsa.support32Bit = true;
+    #   pulse.enable = true;
+    #   wireplumber.extraConfig = {
+    #     bluetoothEnhancements = {
+    #   		"monitor.bluez.properties" = {
+    #   			"bluez5.enable-sbc-xq" = true;
+    #   			"bluez5.enable-msbc" = true;
+    #   			"bluez5.enable-hw-volume" = true;
+    #   			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+    #       };
+    #     };
+    #     # XXX: hopefully temporary
+    #     disableCamera = {
+    #       "wireplumber.profiles" = {
+    #         main = {
+    #           "monitor.libcamera" = "disabled";
+    #         };
+    #       };
+    #     };
+    #   };
+    # };
 
     # platformio uploading
     udev.packages = with pkgs; [ platformio-core.udev ];
@@ -52,10 +54,10 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-    ];
+    # extraPortals = [
+    #   pkgs.xdg-desktop-portal-gtk
+    #   pkgs.xdg-desktop-portal-wlr
+    # ];
     config = {
       common.default = ["wlr" "gtk"];
     };

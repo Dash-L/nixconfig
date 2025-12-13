@@ -15,6 +15,7 @@ let
     privacy-badger = extension "jid1-MnnxcxisBPnSXQ@jetpack";
     duckduckgo = extension "jid1-ZAdIEUB7XOzOJw@jetpack";
     youtube-enhancer = extension "enhancerforyoutube@maximerf.addons.mozilla.org";
+    ghost-text = extension "ghosttext@bfred.it";
   };
 
   ffContainerToSideberryPanel = cont: {
@@ -65,7 +66,8 @@ in {
   programs.firefox = {
     enable = true;
     policies = {
-      ExtensionSettings = with builtins; listToAttrs (concatLists [ [{ name = "*"; value = { installation_mode = "blocked"; }; }] (attrValues exts) ]);
+      # ExtensionSettings = with builtins; listToAttrs (concatLists [ [{ name = "*"; value = { installation_mode = "blocked"; }; }] (attrValues exts) ]);
+      ExtensionSettings = exts;
     };
     profiles.main = {
       isDefault = true;
