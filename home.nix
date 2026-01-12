@@ -51,7 +51,7 @@
   # environment.
   home.packages = with pkgs; [
     uutils-coreutils-noprefix # coreutils replacement
-    du-dust # du replacement
+    dust # du replacement
     xh # httpie replacement
     zip unzip fd ripgrep fzf # basic shell utils
     jq
@@ -70,11 +70,10 @@
     google-fonts
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     font-awesome
     source-han-sans
-    source-han-sans-japanese
-    source-han-serif-japanese
+    source-han-serif
     iosevka
     nerd-fonts.space-mono
     # end fonts
