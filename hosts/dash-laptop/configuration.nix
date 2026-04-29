@@ -23,7 +23,7 @@
 
       peers = [ {
         publicKey = "LDqLLPMJPuj1w2ea/JqEnDHcqeUxDqzgcu/rLAe8on4=";
-        endpoint = "47.14.89.93:14438";
+        endpoint = "47.14.120.103:14438";
         persistentKeepalive = 25;
         allowedIPs = [ "10.0.9.0/24" ];
       } ];
@@ -82,10 +82,14 @@
     config = {
       Touchscreen = {
         # Disable = true;
-        # DisableOnPalm = true;
-        DisableOnStylus = true;
+        DisableOnPalm = true;
+        # DisableOnStylus = true;
       };
     };
+  };
+
+  services.logind.settings.Login = {
+    HandlePowerKey="ignore";
   };
 
   # This value determines the NixOS release from which the default
