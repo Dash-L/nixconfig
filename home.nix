@@ -50,6 +50,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    xournalpp
     uutils-coreutils-noprefix # coreutils replacement
     dust # du replacement
     xh # httpie replacement

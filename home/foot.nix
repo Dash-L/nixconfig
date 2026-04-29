@@ -8,7 +8,7 @@
         # font = "Iosevka:size=10";
         font = "SpaceMono:size=8";
       };
-      colors = {
+      colors-dark = {
         alpha = 0.9;
       };
     };

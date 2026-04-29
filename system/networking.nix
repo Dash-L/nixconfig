@@ -14,6 +14,7 @@
         "1.1.1.1"
         "1.0.0.1"
       ];
+      # wifi.backend = "iwd";
     };
 
     # NOTE: see the hosts/<host>/configuration.nix files for wireguard configs
