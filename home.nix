@@ -62,7 +62,7 @@
     # wayfarer # screen recording
     vlc # video playback
     mako # notifications
-    swww # wallpapers
+    swaybg # wallpaper
     wl-clipboard
     nixd # lsp for .nix files
     zathura # simple pdf viewer

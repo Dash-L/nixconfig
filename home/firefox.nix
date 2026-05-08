@@ -65,6 +65,7 @@ let
 in {
   programs.firefox = {
     enable = true;
+    configPath = ".mozilla/firefox";
     policies = {
       # ExtensionSettings = with builtins; listToAttrs (concatLists [ [{ name = "*"; value = { installation_mode = "blocked"; }; }] (attrValues exts) ]);
       ExtensionSettings = exts;

@@ -34,7 +34,7 @@
       startup = [
         {
           # Wallpaper manager
-          command = "${lib.getExe' pkgs.swww "swww-daemon"}";
+          command = "${lib.getExe pkgs.swaybg} -i ~/archive/wallpapers/wallpaper.png";
           always = false;
         }
         {
