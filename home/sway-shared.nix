@@ -34,8 +34,8 @@
       startup = [
         {
           # Wallpaper manager
-          command = "${lib.getExe pkgs.swaybg} -i ~/archive/wallpapers/wallpaper.png";
-          always = false;
+          command = "pkill swaybg; sleep 0.1 && ${lib.getExe pkgs.swaybg} -i ~/archive/wallpapers/wallpaper.png";
+          always = true;
         }
         {
           command = "${lib.getExe pkgs.networkmanagerapplet}";
