@@ -7,7 +7,7 @@
     users.dash = {
       isNormalUser = true;
       description = "Dashiell Elliott";
-      extraGroups = [ "networkmanager" "wheel" "video" "dialout" "docker" "wireshark" "wpa_supplicant" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "dialout" "docker" "wireshark" "wpa_supplicant" "tty" ];
       shell = pkgs.bash;
       packages = with pkgs; [];
     };
