@@ -3,7 +3,8 @@
 {
   programs.eww = {
     enable = true;
-    configDir = ./eww-config;
+    yuckConfig = builtins.readFile ./eww-config/eww.yuck;
+    scssConfig = builtins.readFile ./eww-config/eww.scss;
   };
   wayland.windowManager.sway = {
     enable = true;
