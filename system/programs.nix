@@ -31,6 +31,7 @@
   catppuccin = {
     flavor = "macchiato";
     accent = "rosewater";
+    autoEnable = true;
     enable = true;
   };
 

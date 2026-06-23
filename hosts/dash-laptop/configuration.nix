@@ -12,6 +12,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # hide ipu6 camera devices (must be removed once camera support is stable)
+  boot.blacklistedKernelModules = [
+  "ipu6"
+  "ipu6-isys"
+  "ipu6-psys"
+  "intel-ipu6"
+  "intel-ipu6ep"
+];
+
   networking.hostName = "dash-laptop"; # Define your hostname.
 
   # This device's wireguard config
