@@ -4,6 +4,8 @@
     ./sway-shared.nix
   ];
 
+  programs.quickshell.activeConfig = "laptop";
+
   wayland.windowManager.sway.config = {
     startup = [
       {

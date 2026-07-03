@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     firefox-sidebar-css = {
       url = "github:drannex/FirefoxSidebar";
       flake = false;
@@ -22,7 +18,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, zen-browser, catppuccin, firefox-sidebar-css, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, catppuccin, firefox-sidebar-css, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -47,7 +43,7 @@
                 catppuccin.homeModules.catppuccin
               ] ++ extraHMModules;
             };
-            home-manager.extraSpecialArgs = { zen-browser=zen-browser.packages.${system}.default; inherit firefox-sidebar-css; };
+            home-manager.extraSpecialArgs = { inherit firefox-sidebar-css; };
           }
         ] ++ extraModules;
       };

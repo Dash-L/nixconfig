@@ -71,6 +71,9 @@
     };
   };
 
+  # Mainly for quickshell and qmlls integration?
+  qt.enable = true;
+
   xdg.mime = {
     enable = true;
     # defaultApplications = {

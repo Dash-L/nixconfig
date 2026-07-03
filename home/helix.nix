@@ -14,6 +14,7 @@
           ret = ["open_below" "normal_mode"];
           "C-ret" = ["open_above" "normal_mode"];
           q = {
+            q = "replay_macro";
             i = ":toggle lsp.display-inlay-hints";
             w = ":toggle whitespace.render all none";
             f = ":format";
@@ -54,6 +55,10 @@
       };
       language-server.nixd = {
         command = "${pkgs.nixd}/bin/nixd";
+      };
+      language-server.qmlls = {
+        command = "qmlls";
+        args = [ "-E" ];
       };
       language = [
         {

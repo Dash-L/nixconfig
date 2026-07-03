@@ -6,6 +6,17 @@
     yuckConfig = builtins.readFile ./eww-config/eww.yuck;
     scssConfig = builtins.readFile ./eww-config/eww.scss;
   };
+  home.file."${config.xdg.configHome}/eww/workspace-watcher.sh".source = ./eww-config/workspace-watcher.sh;
+  # programs.quickshell = {
+  #   enable = true;
+  #   systemd = {
+  #     enable = true;
+  #     target = "sway-session.target";
+  #   };
+  #   configs = {
+  #     laptop = ./quickshell/laptop-bar;
+  #   };
+  # };
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -36,7 +47,7 @@
       startup = [
         {
           # Wallpaper manager
-          command = "pkill swaybg; sleep 0.1 && ${lib.getExe pkgs.swaybg} -i ~/archive/wallpapers/wallpaper.png";
+          command = "sleep 0.5; pkill swaybg; sleep 0.1 && ${lib.getExe pkgs.swaybg} -i ~/archive/wallpapers/wallpaper.png";
           always = true;
         }
         {
