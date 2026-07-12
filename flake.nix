@@ -16,9 +16,13 @@
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/cachix";
+      # Intentionally doesn't follow nixpkgs for caching reasons
+    };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, catppuccin, firefox-sidebar-css, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, catppuccin, firefox-sidebar-css, noctalia, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -48,7 +52,7 @@
         ] ++ extraModules;
       };
     in {
-      nixosConfigurations.dash-laptop = baseConfig [ ./hosts/dash-laptop/configuration.nix nixos-hardware.nixosModules.microsoft-surface-pro-intel ] [ ./home/sway-laptop.nix ];
+      nixosConfigurations.dash-laptop = baseConfig [ ./hosts/dash-laptop/configuration.nix nixos-hardware.nixosModules.microsoft-surface-pro-intel ] [ noctalia.homeModules.default ./home/niri.nix ./home/noctalia.nix ];
       nixosConfigurations.dash-desktop = baseConfig [ ./hosts/dash-desktop/configuration.nix ] [ ./home/sway-desktop.nix ];
     };
 }

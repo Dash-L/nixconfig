@@ -1,11 +1,22 @@
-{ pkgs, ... }:
+{ lib, config, pkgs, ... }:
 {
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors = {
+      niri = {
+        prettyName = "niri";
+        comment = "Niri (UWSM)";
+        binPath = "${lib.getExe config.programs.niri.package}";
+        extraArgs = [ "--session" ];
+      };
+    };
+  };
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway --remember";
-        user = "greeter";
+        command = "${lib.getExe config.programs.uwsm.package} start niri-uwsm.desktop";
+        user = "dash";
       };
     };
   };

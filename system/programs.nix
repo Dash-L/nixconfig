@@ -33,7 +33,15 @@
     accent = "rosewater";
     autoEnable = true;
     enable = true;
+    cache.enable = true;
   };
+
+  hardware.opentabletdriver = {
+    enable = true;
+    daemon.enable = true;
+  };
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
 
   environment.systemPackages = with pkgs; [
     helix

@@ -4,6 +4,7 @@
     printing.enable = true;
 
     upower.enable = true;
+    power-profiles-daemon.enable = true;
 
     # Pipewire support
     pulseaudio.enable = false;
@@ -19,7 +20,7 @@
       			"bluez5.enable-sbc-xq" = true;
       			"bluez5.enable-msbc" = true;
       			"bluez5.enable-hw-volume" = true;
-      			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+      			"bluez5.roles" =  [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" "a2dp_sink" "a2dp_source" ];
           };
         };
       # XXX: hopefully temporary
@@ -45,6 +46,12 @@
 
     bluetooth.enable = true; # enables support for Bluetooth
     bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    bluetooth.settings = {
+      General = {
+        # For showing battery levels of connected devices
+        Experimental = true;
+      };
+    };
   };
 
   # docker
@@ -63,7 +70,7 @@
       };
     };
     extraPortals = [
-    #   pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-wlr
     ];
     config = {

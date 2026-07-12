@@ -9,7 +9,7 @@
     ./home/git.nix
     ./home/pass.nix
     ./home/rnote.nix
-    ./home/mako.nix
+    # ./home/mako.nix
     ./home/direnv.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -51,6 +51,8 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    niri
+    xwayland-satellite
     xournalpp
     uutils-coreutils-noprefix # coreutils replacement
     dust # du replacement
@@ -62,7 +64,6 @@
     xdg-utils
     # wayfarer # screen recording
     vlc # video playback
-    mako # notifications
     swaybg # wallpaper
     wl-clipboard
     nixd # lsp for .nix files
@@ -84,12 +85,10 @@
     zoom-us
     legcord # discord client
     remmina # remote desktop client
+    beeper # messaging client
     # zen-browser
     kicad
     chirp
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
