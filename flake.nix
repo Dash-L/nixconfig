@@ -52,7 +52,16 @@
         ] ++ extraModules;
       };
     in {
-      nixosConfigurations.dash-laptop = baseConfig [ ./hosts/dash-laptop/configuration.nix nixos-hardware.nixosModules.microsoft-surface-pro-intel ] [ noctalia.homeModules.default ./home/niri.nix ./home/noctalia.nix ];
+      nixosConfigurations.dash-laptop = baseConfig [
+        ./hosts/dash-laptop/configuration.nix
+        nixos-hardware.nixosModules.microsoft-surface-pro-intel
+        ((import ./system/serverworks.nix) { ip = "10.0.9.5"; })
+        ((import ./system/bvr.nix) { ip = "10.21.9.3"; })
+      ] [
+        noctalia.homeModules.default
+        ./home/niri.nix
+        ./home/noctalia.nix
+      ];
       nixosConfigurations.dash-desktop = baseConfig [ ./hosts/dash-desktop/configuration.nix ] [ ./home/sway-desktop.nix ];
     };
 }

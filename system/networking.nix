@@ -1,5 +1,16 @@
 { ... }:
 {
+  services.dnsmasq = {
+    enable = true;  # Turn on dnsmasq to handle fallback DNS requests.
+    settings = {
+      no-resolv = true;  # Don't use default system DNS servers.
+      server = [
+        # NOTE: servers are listed in reverse order for priority!
+        "1.1.1.1"
+      ];
+    };
+  };
+
   networking = {
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -10,11 +21,7 @@
     # Enable networking
     networkmanager = {
       enable = true;
-      appendNameservers = [
-        "1.1.1.1"
-        "1.0.0.1"
-      ];
-      # wifi.backend = "iwd";
+      insertNameservers = [ "127.0.0.1" ];
     };
 
     # NOTE: see the hosts/<host>/configuration.nix files for wireguard configs
