@@ -42,6 +42,8 @@
     firefox.profiles.main.enable = true;
   };
 
+  programs.zathura.enable = true;
+
   programs.fuzzel.enable = true;
   programs.zellij = {
     enable = true;
@@ -111,30 +113,24 @@
 
   gtk = {
     enable = true;
-    # theme = {
-    #   name = "Nordic-darker";
-    #   package = pkgs.nordic;
-    # };
-    # iconTheme = {
-    #   name = "Papirus-Dark";
-    #   package = pkgs.papirus-icon-theme;
-    # };
-
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+    colorScheme = "dark";
+    theme = {
+      name = "catppuccin-macchiato-mauve-compact+rimless,black";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
+        variant = "macchiato";
+      };
     };
 
-    gtk4.extraConfig = {
-      AdwStyleManager = ''
-        color-scheme=ADW_COLOR_SCHEME_PREFER_DARK
-      '';
-    };
+    gtk4.theme = config.gtk.theme;
   };
 
   xdg.enable = true;
-  xdg.configFile."mimeapps.list".force = true;
+  xdg.configFile = {
+    "mimeapps.list".force = true;
+  };
   xdg.mimeApps = {
     enable = true;
     # defaultApplications = {
