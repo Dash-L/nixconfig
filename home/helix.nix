@@ -60,6 +60,9 @@
         command = "qmlls";
         args = [ "-E" ];
       };
+      language-server.svls = {
+        command = "svls";
+      };
       language = [
         {
           name = "typescript";
@@ -91,6 +94,10 @@
           formatter = {
             command = "clang-format";
           };
+        }
+        {
+          name = "verilog";
+          language-servers = ["svls"];
         }
       ];
     };
