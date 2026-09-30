@@ -60,8 +60,11 @@
         command = "qmlls";
         args = [ "-E" ];
       };
-      language-server.svls = {
-        command = "svls";
+      language-server.veridian = {
+        command = "veridian";
+      };
+      language-server.verible = {
+        command = "verible-verilog-ls";
       };
       language = [
         {
@@ -97,7 +100,7 @@
         }
         {
           name = "verilog";
-          language-servers = ["svls"];
+          language-servers = ["verible"];
         }
       ];
     };
