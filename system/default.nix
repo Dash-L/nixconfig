@@ -12,7 +12,7 @@
   ];
 
   # lix
-  nix.package = pkgs.lixPackageSets.stable.lix;
+  # nix.package = pkgs.lixPackageSets.stable.lix;
 
   # flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
